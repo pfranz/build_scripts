@@ -29,7 +29,7 @@ node('centos6') {
         // static linking gcc so we don't need to set LD_LIBRARY_PATH to run gcc
         // setting LD_LIBRARY_PATH because it fails to find mpc library on cent6
         withEnv(['LD_LIBRARY_PATH=/opt/cloog/0.18.0/lib:/opt/gmp/5.1.3/lib:/opt/mpc/1.0.2/lib:/opt/mpfr/3.1.2/lib:/opt/ppl/1.1/lib']) {
-            sh './build.sh https://ftp.gnu.org/gnu/gcc/gcc-4.8.3/gcc-4.8.3.tar.bz2 /opt/gcc/4.8.3 "--disable-cloog-version-check --disable-ppl-version-check --enable-cloog-backend=isl --enable-gold --enable-languages=\'c,c++\' --enable-lto --enable-libssp --disable-shared --with-cloog=/opt/cloog/0.18.0 --with-gmp=/opt/gmp/5.1.3 --with-mpc=/opt/mpc/1.0.2 --with-mpfr=/opt/mpfr/3.1.2 --with-ppl=/opt/ppl/1.1"'
+            sh './build.sh https://ftp.gnu.org/gnu/gcc/gcc-4.8.3/gcc-4.8.3.tar.bz2 /opt/gcc/4.8.3 "--disable-cloog-version-check --disable-ppl-version-check --enable-cloog-backend=isl --enable-gold --enable-languages=c,c++ --enable-lto --enable-libssp --disable-shared --with-cloog=/opt/cloog/0.18.0 --with-gmp=/opt/gmp/5.1.3 --with-mpc=/opt/mpc/1.0.2 --with-mpfr=/opt/mpfr/3.1.2 --with-ppl=/opt/ppl/1.1"'
         }
     }
 }
