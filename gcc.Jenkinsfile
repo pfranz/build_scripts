@@ -22,7 +22,7 @@ node('centos6') {
     }
     stage('Build cloog') {
         // NOTE: gmp build dir, not install dir
-        sh './build.sh https://www.bastoul.net/cloog/pages/download/cloog-0.18.0.tar.gz /opt/cloog/0.18.0 "--with-gmp-builddir=build/gmp-5.1.3 --with-gmp=build --enable-static --disable-shared"'
+        sh './build.sh https://www.bastoul.net/cloog/pages/download/cloog-0.18.0.tar.gz /opt/cloog/0.18.0 "--with-gmp-builddir=`pwd`/build/gmp-5.1.3 --with-gmp=build --enable-static --disable-shared"'
     }
     stage('Build gcc') {
         // sudo yum install glibc-devel.i686 -y
