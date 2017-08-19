@@ -18,7 +18,7 @@ node('centos6') {
             'CXX=/opt/gcc/4.8.3/bin/g++'
             ]) {
 
-            sh './build http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.0.tar.gz /opt/openexr/2.2.0 "--with-ilmbase-prefix=/opt/ilmbase/2.2.0 --disable-shared"'
+            sh './build.sh http://download.savannah.nongnu.org/releases/openexr/openexr-2.2.0.tar.gz /opt/openexr/2.2.0 "--with-ilmbase-prefix=/opt/ilmbase/2.2.0 --disable-shared"'
         }
     }
 }
