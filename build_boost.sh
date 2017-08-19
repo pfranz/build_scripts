@@ -11,7 +11,7 @@ build_boost() {
     local do_clean=${5-true}
     echo "building: "`basename $appbuilddir`
 
-    if [ ! $use_separatebuilddir ]; then
+    if [ "$use_separatebuilddir" = false ]; then
         appbuilddir=$appextractdir
     fi
 
@@ -29,7 +29,7 @@ build_boost() {
     ${appextractdir}/b2 -q -s NO_BZIP2=1 install --without-math --without-python --without-mpi link=static
 }
 
-if [ $# -ne 0 ]; then
+if [ $0 = ${BASH_SOURCE[0]} ] && [ $# -ne 0 ]; then
     # does boost support a separate build dir?
     install "$1" "$2" "$3" true false "" "" build_boost
 fi

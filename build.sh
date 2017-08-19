@@ -85,7 +85,7 @@ build() {
     local do_clean=${5-true}
     echo "building: "`basename $appbuilddir`
 
-    if [ ! $use_separatebuilddir ]; then
+    if [ "$use_separatebuilddir" = false ]; then
         appbuilddir=$appextractdir
     fi
 
@@ -104,6 +104,6 @@ build() {
     sudo make install
 }
 
-if [ $# -ne 0 ]; then
+if [ $0 = ${BASH_SOURCE[0]} ] && [ $# -ne 0 ]; then
     install "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8"
 fi
