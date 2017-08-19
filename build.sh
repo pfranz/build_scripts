@@ -55,7 +55,7 @@ download() {
     if $do_clean; then
         rm -f $archivename || true
     fi
-    curl -s -O $1
+    curl -s -L -O $1
 
     eval "$_return=\"$archivedir/$archivename\""
 }
