@@ -8,7 +8,7 @@ node('centos6') {
     // I tried to build zlib, but couldn't get openexr to look in a nonstandard location for it
     stage('ilmbase') {
         withEnv(['CC=/opt/gcc/4.8.3/bin/gcc', 'CXX=/opt/gcc/4.8.3/bin/g++']) {
-            sh './build http://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz /opt/ilmbase/2.2.0 "--disable-shared"'
+            sh './build.sh http://download.savannah.nongnu.org/releases/openexr/ilmbase-2.2.0.tar.gz /opt/ilmbase/2.2.0 "--disable-shared"'
         }
     }
     stage('openexr') {
