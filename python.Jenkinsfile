@@ -17,7 +17,7 @@ stage('Publish?') {
 node('centos6') {
     stage('Create tarball') {
         dir('/opt/python/2.7.13') {
-            sh 'tar czf /vagrant/python/2.7.13-gcc4.8.3-linux.tar.gz *'
+            sh 'tar czf /vagrant/python-2.7.13-gcc4.8.3-linux.tar.gz *'
         }
     }
     stage('Publish') {
