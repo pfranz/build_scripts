@@ -22,3 +22,21 @@ node('centos6') {
         }
     }
 }
+stage('Publish?') {
+    input "Publish tarball to GitHub?"
+}
+node('centos6') {
+    stage('Create tarball') {
+        dir('/opt/ilmbase/2.2.0') {
+            sh 'tar czf /vagrant/ilmbase-2.2.0-gcc4.8.3-linux.tar.gz *'
+        }
+        dir('/opt/openexr/2.2.0') {
+            sh 'tar czf /vagrant/openexr-2.2.0-gcc4.8.3-linux.tar.gz *'
+        }
+    }
+    stage('Publish') {
+        withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+            sh '/root/bin/publish_to_github openexr-2.2.0-gcc4.8.3-linux-`date +%Y%m%d` " #latest #linux #VRP2017" /vagrant/ilmbase-2.2.0-gcc4.8.3-linux.tar.gz /vagrant/openexr-2.2.0-gcc4.8.3-linux.tar.gz'
+        }
+    }
+}
