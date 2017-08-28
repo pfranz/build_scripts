@@ -19,3 +19,18 @@ node('centos6') {
         }
     }
 }
+stage('Publish?') {
+    input "Publish tarball to GitHub?"
+}
+node('centos6') {
+    stage('Create tarball') {
+        dir('/opt/qtbase/5.6.1-1') {
+            sh 'tar czf /vagrant/qtbase-5.6.1-1-gcc4.8.3-linux.tar.gz *'
+        }
+    }
+    stage('Publish') {
+        withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
+            sh '/root/bin/publish_to_github qtbase-5.6.1-1-gcc4.8.3-linux-`date +%Y%m%d` " #latest #linux #VRP2017" /vagrant/qtbase-5.6.1-1-gcc4.8.3-linux.tar.gz'
+        }
+    }
+}
